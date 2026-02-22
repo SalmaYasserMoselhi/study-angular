@@ -232,4 +232,34 @@
       }
     </div>
   </div>
+
+  <!-- 
+    =========================================
+    9. Two-way Binding
+    =========================================
+    WHEN TO USE:
+    - To create a two-way data binding between a form input and a component property.
+    - Syntax: [(ngModel)]="property"
+    - Common for: input, select, and textarea elements.
+    - Benefits: 
+      - Simplifies two-way data binding.
+      - Maintains data consistency.
+  -->
+  <div class="mb-5 p-3 border rounded bg-light text-center">
+    <h3>9. Two-way Binding</h3>
+    <div class="max-w-400 mx-auto">
+      <input
+        type="text"
+        [(ngModel)]="searchInput"
+        class="form-control mb-3"
+        placeholder="Enter your search query..."
+      />
+      <p class="lead">
+        Search Result:
+        <span class="badge bg-primary px-3 py-2 fs-6 rounded-pill shadow-sm">{{
+          searchInput
+        }}</span>
+      </p>
+    </div>
+  </div>
 </section>

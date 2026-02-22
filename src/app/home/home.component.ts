@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Product } from '../product';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -335,4 +336,12 @@ export class HomeComponent {
       onSale: false,
     },
   ];
+
+  /**
+   * =========================================
+   * 9. TWO-WAY BINDING PROPERTIES
+   * =========================================
+   * Syncs data between logic and UI automatically.
+   */
+  searchInput: string = '';
 }
