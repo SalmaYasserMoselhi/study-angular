@@ -1,0 +1,143 @@
+<section class="container mt-4">
+  <!-- 
+    =========================================
+    1. DATA INTERPOLATION {{ }}
+    =========================================
+    WHEN TO USE:
+    - To display dynamic text content inside HTML tags.
+    - Syntax: {{ expression }}
+    
+    NOTE: Automatically escapes HTML (converts tags to plain text).
+  -->
+  <div class="mb-5 p-3 border rounded bg-light">
+    <h3>1. Data Interpolation</h3>
+    <h1>Welcome to {{ title }}</h1>
+    <p>
+      Logged in as: <strong>{{ getName() }}</strong>
+    </p>
+
+    <div class="alert alert-info">
+      <strong>Security Note:</strong> Interpolating a string with HTML tags
+      results in: <code>{{ htmlSnippet }}</code> (Renders as text, not a
+      button).
+    </div>
+  </div>
+
+  <!-- 
+    =========================================
+    2. PROPERTY BINDING [property]
+    =========================================
+    WHEN TO USE:
+    - To bind a value from TS to an HTML element property or attribute.
+    - Use this for standard properties (src, disabled, value, etc.).
+    
+    NOTE: Preserves data types (e.g., boolean remains boolean).
+  -->
+  <div class="mb-5 p-3 border rounded bg-light">
+    <h3>2. Property Binding</h3>
+    <img
+      [src]="imgSrc"
+      [alt]="'Home Image'"
+      class="img-fluid rounded mb-3"
+      style="max-height: 200px"
+    />
+    <br />
+    <button [disabled]="isBtnDisabled" class="btn btn-secondary">
+      I am disabled via property binding
+    </button>
+  </div>
+
+  <!-- 
+    =========================================
+    3. EVENT BINDING (event)
+    =========================================
+    WHEN TO USE:
+    - To listen for user actions (clicks, keystrokes, mouse moves, etc.).
+    - Syntax: (event)="method()"
+  -->
+  <div class="mb-5 p-3 border rounded bg-light">
+    <h3>3. Event Binding</h3>
+    <button (click)="sayHello()" class="btn btn-primary mb-3">Click Me!</button>
+    <div class="form-group">
+      <label for="eventInput">Type something (check console):</label>
+      <input
+        type="text"
+        id="eventInput"
+        class="form-control"
+        (keydown)="onKeydown($event)"
+      />
+    </div>
+  </div>
+
+  <!-- 
+    =========================================
+    4. ATTRIBUTE BINDING [attr.attribute]
+    =========================================
+    WHEN TO USE:
+    - When an element does NOT have a corresponding DOM property.
+    - Common for: aria-*, colspan/rowspan, role, or custom data-* attributes.
+    
+    NOTE: Converts everything to a string.
+    
+    BENEFITS:
+    1. Accessibility: Essential for ARIA attributes (screen readers).
+    2. SEO: Ensures metadata is readable by search engine crawlers.
+  -->
+  <div class="mb-5 p-3 border rounded bg-light">
+    <h3>4. Attribute Binding</h3>
+    <table class="table table-bordered">
+      <tr>
+        <td [attr.colspan]="colSpanValue" class="text-center bg-warning">
+          This cell uses [attr.colspan]
+        </td>
+      </tr>
+    </table>
+
+    <div class="d-flex align-items-center">
+      <span class="me-2">Accessibility example:</span>
+      <button
+        [attr.aria-label]="ariaLabelText"
+        [attr.role]="roleName"
+        class="btn btn-outline-danger"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- 
+    =========================================
+    5. CLASS BINDING [class]
+    =========================================
+    WHEN TO USE:
+    - To add/remove CSS classes based on a condition or an object.
+    - Syntax: [class]="classObject" OR [class.className]="condition"
+  -->
+  <div class="mb-5 p-3 border rounded bg-light">
+    <h3>5. Class Binding</h3>
+    <div [class]="classStyleObj" class="p-2 rounded mb-2">
+      Static Text with dynamic classes (Check my background/color logic).
+    </div>
+  </div>
+
+  <!-- 
+    =========================================
+    6. STYLE BINDING [style]
+    =========================================
+    WHEN TO USE:
+    - To set specific inline styles dynamically.
+    - Syntax: [style]="styleObject" OR [style.property]="value"
+  -->
+  <div class="mb-5 p-3 border rounded bg-light">
+    <h3>6. Style Binding</h3>
+    <div
+      [style]="{
+        'background-color': role === 'guest' ? color : 'green',
+        padding: userAge > 20 ? '10px' : '',
+      }"
+      class="text-white rounded"
+    >
+      Dynamic background and padding!
+    </div>
+  </div>
+</section>
