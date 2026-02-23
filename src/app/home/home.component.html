@@ -9,7 +9,7 @@
     
     NOTE: Automatically escapes HTML (converts tags to plain text).
   -->
-  <div class="mb-5 p-3 border rounded bg-light">
+  <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>1. Data Interpolation</h3>
     <h1>Welcome to {{ title }}</h1>
     <p>
@@ -21,7 +21,7 @@
       results in: <code>{{ htmlSnippet }}</code> (Renders as text, not a
       button).
     </div>
-  </div>
+  </div> -->
 
   <!-- 
     =========================================
@@ -33,7 +33,7 @@
     
     NOTE: Preserves data types (e.g., boolean remains boolean).
   -->
-  <div class="mb-5 p-3 border rounded bg-light">
+  <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>2. Property Binding</h3>
     <img
       [src]="imgSrc"
@@ -45,7 +45,7 @@
     <button [disabled]="isBtnDisabled" class="btn btn-secondary">
       I am disabled via property binding
     </button>
-  </div>
+  </div> -->
 
   <!-- 
     =========================================
@@ -55,7 +55,7 @@
     - To listen for user actions (clicks, keystrokes, mouse moves, etc.).
     - Syntax: (event)="method()"
   -->
-  <div class="mb-5 p-3 border rounded bg-light">
+  <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>3. Event Binding</h3>
     <button (click)="sayHello()" class="btn btn-primary mb-3">Click Me!</button>
     <div class="form-group">
@@ -67,7 +67,7 @@
         (keydown)="onKeydown($event)"
       />
     </div>
-  </div>
+  </div> -->
 
   <!-- 
     =========================================
@@ -83,7 +83,7 @@
     1. Accessibility: Essential for ARIA attributes (screen readers).
     2. SEO: Ensures metadata is readable by search engine crawlers.
   -->
-  <div class="mb-5 p-3 border rounded bg-light">
+  <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>4. Attribute Binding</h3>
     <table class="table table-bordered">
       <tr>
@@ -103,7 +103,7 @@
         Close
       </button>
     </div>
-  </div>
+  </div> -->
 
   <!-- 
     =========================================
@@ -113,12 +113,12 @@
     - To add/remove CSS classes based on a condition or an object.
     - Syntax: [class]="classObject" OR [class.className]="condition"
   -->
-  <div class="mb-5 p-3 border rounded bg-light">
+  <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>5. Class Binding</h3>
     <div [class]="classStyleObj" class="p-2 rounded mb-2">
       Static Text with dynamic classes (Check my background/color logic).
     </div>
-  </div>
+  </div> -->
 
   <!-- 
     =========================================
@@ -128,7 +128,7 @@
     - To set specific inline styles dynamically.
     - Syntax: [style]="styleObject" OR [style.property]="value"
   -->
-  <div class="mb-5 p-3 border rounded bg-light">
+  <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>6. Style Binding</h3>
     <div
       [style]="{
@@ -139,7 +139,7 @@
     >
       Dynamic background and padding!
     </div>
-  </div>
+  </div> -->
 
   <!-- 
     =========================================
@@ -157,17 +157,17 @@
       - $odd -> true if the current item is odd
     - track by unique id if available else use $index 
     -->
-  <div class="mb-5 p-3 border rounded bg-light">
+  <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>7. For Loop (Simple List)</h3>
     <ul class="list-group">
       @for (user of users; track $index) {
         <li class="list-group-item">{{ user }}</li>
       }
     </ul>
-  </div>
+  </div> -->
 
   <div class="mb-5 p-3 border rounded bg-light">
-    <h3>7.1 For Loop (Product Grid)</h3>
+    <h3>Products List</h3>
     <div class="row g-4">
       @for (product of productsList; track product.id) {
         <div class="col-md-4 col-lg-3">
@@ -193,14 +193,14 @@
                   View
                 </button>
               </div>
-              <div class="row g-1 mt-2">
-                <!-- Nested Loop: Each image in its own column for a single line layout -->
-                @for (productImageSrc of product.images; track $index) {
+              <!-- <div class="row g-1 mt-2"> -->
+              <!-- Nested Loop: Each image in its own column for a single line layout -->
+              <!-- @for (productImageSrc of product.images; track $index) {
                   <div class="col">
                     <img [src]="productImageSrc" class="w-100 rounded" alt="" />
                   </div>
-                }
-              </div>
+                } -->
+              <!-- </div> -->
             </div>
           </div>
         </div>
@@ -218,7 +218,7 @@
     - To conditionally render an element based on a boolean condition.
     - Syntax: @if (condition) { ... } @else { ... }
   -->
-  <div class="mb-5 p-3 border rounded bg-light">
+  <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>8. If Condition</h3>
     <div
       class="alert"
@@ -231,7 +231,7 @@
         <span>Status: <strong>Minor</strong> (Restricted Access)</span>
       }
     </div>
-  </div>
+  </div> -->
 
   <!-- 
     =========================================
@@ -245,7 +245,7 @@
       - Simplifies two-way data binding.
       - Maintains data consistency.
   -->
-  <div class="mb-5 p-3 border rounded bg-light text-center">
+  <!-- <div class="mb-5 p-3 border rounded bg-light text-center">
     <h3>9. Two-way Binding</h3>
     <div class="max-w-400 mx-auto">
       <input
@@ -261,5 +261,5 @@
         }}</span>
       </p>
     </div>
-  </div>
+  </div> -->
 </section>

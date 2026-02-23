@@ -1,8 +1,33 @@
-<section>
-  <h1>About Page</h1>
+<section class="p-4 border rounded bg-light">
+  <h2>About us</h2>
   <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
+    This is the parent component. Use the links below to load child components
+    inside the outlet.
   </p>
-  <app-card></app-card>
-  <button class="btn btn-success">Click Me</button>
+
+  <!-- 
+    =========================================
+    NESTED ROUTING: PARENT VIEW
+    =========================================
+    1. Navigation Links:
+       - Use relative paths (no leading '/') to target child routes.
+       - routerLinkActive: Highlights the link when the child route is active.
+  -->
+  <nav class="mb-3">
+    <a routerLink="company" routerLinkActive="fw-bold text-primary" class="me-3"
+      >Company</a
+    >
+    <a routerLink="team" routerLinkActive="fw-bold text-primary">Team</a>
+  </nav>
+
+  <hr />
+
+  <!-- 
+    2. Child Router Outlet:
+       - Every component with children MUST have its own <router-outlet>.
+       - Child components defined in routes will "plug into" this specific spot.
+  -->
+  <div class="p-3 bg-white border">
+    <router-outlet></router-outlet>
+  </div>
 </section>
