@@ -148,14 +148,13 @@
     WHEN TO USE:
     - To render a list of items dynamically.
     - Syntax: @for (item of items; track item.id) { ... }
-    - Options in @for:
-      - $index -> the index of the current item
-      - $count -> the total number of items
-      - $first -> true if the current item is the first one
-      - $last -> true if the current item is the last one
-      - $even -> true if the current item is even
-      - $odd -> true if the current item is odd
-    - track by unique id if available else use $index 
+    - Options in @for (accessible via variables):
+      - $index -> Current item index (0-based).
+      - $count -> Total items in the list.
+      - $first / $last -> Booleans for start/end.
+      - $even / $odd -> Booleans for row styling.
+    - Performance: Always 'track' by a unique ID; use $index only as a last resort.
+    - @empty: Add a block after @for to show content when the list is empty.
     -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>7. For Loop (Simple List)</h3>
@@ -210,13 +209,76 @@
     </div>
   </div>
 
+  <div class="mb-5 p-3 border rounded bg-light">
+    <h3 #deferTrigger>Recommended Products</h3>
+
+    <!-- 
+      =========================================
+      @defer (Deferrable Views)
+      =========================================
+      CONCEPT: Lazy-loads a component or template fragment to improve initial performance.
+      
+      A. TRIGGERS (Define WHEN the load starts):
+      1. on idle (Default): Loads when the browser reaches an idle state (uses requestIdleCallback).
+      2. on immediate: Starts loading as soon as the page is finished rendering.
+      3. on viewport: Triggers when the content (or a #ref) enters the visible screen area.
+      4. on hover: Triggers when the user mouses over the area.
+      5. on interaction: Triggers on click, keydown events.
+      6. on timer(ms): Triggers after a fixed delay (e.g., timer(2000ms)).
+      7. when <condition>: A TypeScript boolean expression (e.g., when dataLoaded == true).
+
+      B. OPTIONAL BLOCKS (The lifecycle):
+      - @placeholder: Content visible BEFORE the trigger happens.
+      - @loading: Content visible WHILE the component is being downloaded.
+      - @error: Content visible if the lazy load fails (e.g., network error).
+
+      C. PERFORMANCE TIP:
+      - 'prefetch': You can load the JS in advance even before the trigger is met.
+        Example: @defer (on interaction; prefetch on idle) { ... }
+    -->
+    <!-- EXAMPLE 1: Trigger on a specific element (#deferTrigger) -->
+    <!-- 
+    @defer (on interaction(deferTrigger)) {
+      <app-recommended-products />
+    } 
+    -->
+
+    <!-- EXAMPLE 2: Trigger on self (placeholder) -->
+    <!-- 
+    @defer (on hover) {
+      <app-recommended-products />
+    } @placeholder {
+      <div class="p-3 border text-center">Hover here to load recommended products</div>
+    } 
+    -->
+
+    <!-- EXAMPLE 3: prefetch -->
+    @defer (on interaction; prefetch on idle) {
+      <app-recommended-products></app-recommended-products>
+    } @placeholder {
+      <button class="btn btn-primary d-block mx-auto">
+        show recommended products
+      </button>
+    }
+
+    <!-- ACTIVE IMPLEMENTATION -->
+    <!-- @defer (on viewport(deferTrigger)) {
+      <app-recommended-products></app-recommended-products>
+    } -->
+  </div>
+
+  <!-- NOTE: 'on immediate' loads right away but still lazy-loads the JS bundle -->
+  <!-- @defer (on immediate) {
+    <app-immediate-test-component></app-immediate-test-component>
+  } -->
+
   <!-- 
     =========================================
     8. IF CONDITION @if
     =========================================
     WHEN TO USE:
-    - To conditionally render an element based on a boolean condition.
-    - Syntax: @if (condition) { ... } @else { ... }
+    - To conditionally render an element based on a dynamic expression.
+    - Syntax: @if (condition) { ... } @else if (other) { ... } @else { ... }
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>8. If Condition</h3>

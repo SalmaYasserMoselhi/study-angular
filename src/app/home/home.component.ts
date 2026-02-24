@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
 import { Product } from '../product';
 import { FormsModule } from '@angular/forms';
+import { RecommendedProductsComponent } from '../recommended-products/recommended-products.component';
+import { NgClass } from '@angular/common';
+import { ImmediateTestComponentComponent } from '../immediate-test-component/immediate-test-component.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule],
+  imports: [
+    FormsModule,
+    RecommendedProductsComponent,
+    NgClass,
+    ImmediateTestComponentComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

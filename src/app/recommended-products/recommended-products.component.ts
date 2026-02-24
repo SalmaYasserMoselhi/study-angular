@@ -1,0 +1,65 @@
+import { Component } from '@angular/core';
+import { Product } from '../product';
+
+@Component({
+  selector: 'app-recommended-products',
+  standalone: true,
+  imports: [],
+  templateUrl: './recommended-products.component.html',
+  styleUrl: './recommended-products.component.css',
+})
+export class RecommendedProductsComponent {
+  recommendedProducts: Product[] = [
+    {
+      id: '1',
+      title: 'Woman Shawl',
+      description:
+        'Material\tPolyester Blend\nColour Name\tMulticolour\nDepartment\tWomen',
+      imageCover:
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403397402-cover.jpeg',
+      price: 190,
+      quantity: 225,
+      images: [
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403397482-1.jpeg',
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403397482-2.jpeg',
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403397483-3.jpeg',
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403397485-4.jpeg',
+      ],
+      onSale: false,
+    },
+    {
+      id: '2',
+      title: 'Woman Shawl',
+      description:
+        'Material\tPolyester Blend\nColour Name\tMulticolour\nDepartment\tWomen',
+      imageCover:
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403266739-cover.jpeg',
+      price: 149,
+      quantity: 220,
+      images: [
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403266805-1.jpeg',
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403266806-3.jpeg',
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403266806-2.jpeg',
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403266807-4.jpeg',
+      ],
+      onSale: true,
+    },
+    {
+      id: '3',
+      title: 'Woman Shawl',
+      description:
+        'Material\tPolyester Blend\nColour Name\tMulticolour\nDepartment\tWomen',
+      imageCover:
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403156501-cover.jpeg',
+      price: 149,
+      quantity: 220,
+      images: [
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403156555-3.jpeg',
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403156555-2.jpeg',
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403156554-1.jpeg',
+        'https://ecommerce.routemisr.com/Route-Academy-products/1680403156556-4.jpeg',
+      ],
+      onSale: false,
+    },
+  ];
+}
