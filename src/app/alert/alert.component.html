@@ -1,0 +1,24 @@
+<div
+  class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3"
+  role="alert"
+  style="z-index: 1050"
+>
+  <!-- 
+    A. MULTI-SLOT CONTENT PROJECTION
+    - Uses 'select' attribute to capture specific elements.
+  -->
+  <strong>Notification from <ng-content select="span"></ng-content>!</strong>
+
+  <!-- 
+    B. DEFAULT SLOT (Catch-all)
+    - Captures any content that doesn't match a 'select' attribute.
+  -->
+  <ng-content></ng-content>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+    (click)="OnFireEvent()"
+  ></button>
+</div>

@@ -1,116 +1,56 @@
 <section>
   <!-- 
-    =========================================
     1. DATA INTERPOLATION {{ }}
-    =========================================
-    WHEN TO USE:
-    - To display dynamic text content inside HTML tags.
-    - Syntax: {{ expression }}
-    
-    NOTE: Automatically escapes HTML (converts tags to plain text).
+    - Displays dynamic text, automatically escapes HTML.
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>1. Data Interpolation</h3>
     <h1>Welcome to {{ title }}</h1>
-    <p>
-      Logged in as: <strong>{{ getName() }}</strong>
-    </p>
-
+    <p>Logged in as: <strong>{{ getName() }}</strong></p>
     <div class="alert alert-info">
-      <strong>Security Note:</strong> Interpolating a string with HTML tags
-      results in: <code>{{ htmlSnippet }}</code> (Renders as text, not a
-      button).
+      <strong>Security:</strong> {{ htmlSnippet }} (renders as plain text)
     </div>
   </div> -->
 
   <!-- 
-    =========================================
     2. PROPERTY BINDING [property]
-    =========================================
-    WHEN TO USE:
-    - To bind a value from TS to an HTML element property or attribute.
-    - Use this for standard properties (src, disabled, value, etc.).
-    
-    NOTE: Preserves data types (e.g., boolean remains boolean).
+    - Binds TS values to HTML properties/attributes (src, disabled, etc.).
+    - Preserves data types.
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>2. Property Binding</h3>
-    <img
-      [src]="imgSrc"
-      [alt]="'Home Image'"
-      class="img-fluid rounded mb-3"
-      style="max-height: 200px"
-    />
+    <img [src]="imgSrc" [alt]="'Home Image'" class="img-fluid rounded mb-3" style="max-height: 200px" />
     <br />
-    <button [disabled]="isBtnDisabled" class="btn btn-secondary">
-      I am disabled via property binding
-    </button>
+    <button [disabled]="isBtnDisabled" class="btn btn-secondary">Disabled Button</button>
   </div> -->
 
   <!-- 
-    =========================================
     3. EVENT BINDING (event)
-    =========================================
-    WHEN TO USE:
-    - To listen for user actions (clicks, keystrokes, mouse moves, etc.).
-    - Syntax: (event)="method()"
+    - Listens for user actions (click, keydown, etc.).
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>3. Event Binding</h3>
     <button (click)="sayHello()" class="btn btn-primary mb-3">Click Me!</button>
     <div class="form-group">
-      <label for="eventInput">Type something (check console):</label>
-      <input
-        type="text"
-        id="eventInput"
-        class="form-control"
-        (keydown)="onKeydown($event)"
-      />
+      <input type="text" class="form-control" (keydown)="onKeydown($event)" placeholder="Type something..."/>
     </div>
   </div> -->
 
   <!-- 
-    =========================================
     4. ATTRIBUTE BINDING [attr.attribute]
-    =========================================
-    WHEN TO USE:
-    - When an element does NOT have a corresponding DOM property.
-    - Common for: aria-*, colspan/rowspan, role, or custom data-* attributes.
-    
-    NOTE: Converts everything to a string.
-    
-    BENEFITS:
-    1. Accessibility: Essential for ARIA attributes (screen readers).
-    2. SEO: Ensures metadata is readable by search engine crawlers.
+    - Used when no DOM property exists (aria-*, colspan, role).
+    - Vital for Accessibility (ARIA) and SEO.
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
-    <h3>4. Attribute Binding</h3>
     <table class="table table-bordered">
-      <tr>
-        <td [attr.colspan]="colSpanValue" class="text-center bg-warning">
-          This cell uses [attr.colspan]
-        </td>
-      </tr>
+      <tr><td [attr.colspan]="colSpanValue" class="text-center bg-warning">Attribute Binding Cell</td></tr>
     </table>
-
-    <div class="d-flex align-items-center">
-      <span class="me-2">Accessibility example:</span>
-      <button
-        [attr.aria-label]="ariaLabelText"
-        [attr.role]="roleName"
-        class="btn btn-outline-danger"
-      >
-        Close
-      </button>
-    </div>
+    <button [attr.aria-label]="ariaLabelText" [attr.role]="roleName" class="btn btn-outline-danger">Close</button>
   </div> -->
 
   <!-- 
-    =========================================
     5. CLASS BINDING [class]
-    =========================================
-    WHEN TO USE:
-    - To add/remove CSS classes based on a condition or an object.
+    - Adds/removes CSS classes based on a condition or object.
     - Syntax: [class]="classObject" OR [class.className]="condition"
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
@@ -121,11 +61,8 @@
   </div> -->
 
   <!-- 
-    =========================================
     6. STYLE BINDING [style]
-    =========================================
-    WHEN TO USE:
-    - To set specific inline styles dynamically.
+    - Sets specific inline styles dynamically.
     - Syntax: [style]="styleObject" OR [style.property]="value"
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
@@ -142,19 +79,11 @@
   </div> -->
 
   <!-- 
-    =========================================
     7. FOR LOOP @for
-    =========================================
-    WHEN TO USE:
-    - To render a list of items dynamically.
-    - Syntax: @for (item of items; track item.id) { ... }
-    - Options in @for (accessible via variables):
-      - $index -> Current item index (0-based).
-      - $count -> Total items in the list.
-      - $first / $last -> Booleans for start/end.
-      - $even / $odd -> Booleans for row styling.
+    - Renders a list of items dynamically.
+    - Options: $index, $count, $first, $last, $even, $odd.
     - Performance: Always 'track' by a unique ID; use $index only as a last resort.
-    - @empty: Add a block after @for to show content when the list is empty.
+    - @empty: Shows content when the list is empty.
     -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>7. For Loop (Simple List)</h3>
@@ -170,38 +99,7 @@
     <div class="row g-4">
       @for (product of productsList; track product.id) {
         <div class="col-md-4 col-lg-3">
-          <div class="card h-100 shadow-sm">
-            <img
-              [src]="product.imageCover"
-              class="card-img-top"
-              [alt]="product.title"
-              loading="lazy"
-            />
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title h6">{{ product.title }}</h5>
-              <p class="card-text small text-muted">
-                {{ product.description }}
-              </p>
-              <div
-                class="mt-auto d-flex justify-content-between align-items-center"
-              >
-                <span class="fw-bold text-primary"
-                  >{{ product.price }} EGP</span
-                >
-                <button class="btn btn-sm btn-outline-primary shadow-none">
-                  View
-                </button>
-              </div>
-              <!-- <div class="row g-1 mt-2"> -->
-              <!-- Nested Loop: Each image in its own column for a single line layout -->
-              <!-- @for (productImageSrc of product.images; track $index) {
-                  <div class="col">
-                    <img [src]="productImageSrc" class="w-100 rounded" alt="" />
-                  </div>
-                } -->
-              <!-- </div> -->
-            </div>
-          </div>
+          <app-product-card [product]="product"></app-product-card>
         </div>
       } @empty {
         <p class="text-center text-muted fs-5">No Products Available</p>
@@ -213,28 +111,11 @@
     <h3 #deferTrigger>Recommended Products</h3>
 
     <!-- 
-      =========================================
       @defer (Deferrable Views)
-      =========================================
-      CONCEPT: Lazy-loads a component or template fragment to improve initial performance.
-      
-      A. TRIGGERS (Define WHEN the load starts):
-      1. on idle (Default): Loads when the browser reaches an idle state (uses requestIdleCallback).
-      2. on immediate: Starts loading as soon as the page is finished rendering.
-      3. on viewport: Triggers when the content (or a #ref) enters the visible screen area.
-      4. on hover: Triggers when the user mouses over the area.
-      5. on interaction: Triggers on click, keydown events.
-      6. on timer(ms): Triggers after a fixed delay (e.g., timer(2000ms)).
-      7. when <condition>: A TypeScript boolean expression (e.g., when dataLoaded == true).
-
-      B. OPTIONAL BLOCKS (The lifecycle):
-      - @placeholder: Content visible BEFORE the trigger happens.
-      - @loading: Content visible WHILE the component is being downloaded.
-      - @error: Content visible if the lazy load fails (e.g., network error).
-
-      C. PERFORMANCE TIP:
-      - 'prefetch': You can load the JS in advance even before the trigger is met.
-        Example: @defer (on interaction; prefetch on idle) { ... }
+      - Lazy-loads components to improve performance.
+      - Triggers: on idle, immediate, viewport, hover, interaction, timer, when <condition>.
+      - Blocks: @placeholder, @loading, @error.
+      - 'prefetch': Loads JS in advance (e.g., prefetch on idle).
     -->
     <!-- EXAMPLE 1: Trigger on a specific element (#deferTrigger) -->
     <!-- 
@@ -273,55 +154,30 @@
   } -->
 
   <!-- 
-    =========================================
     8. IF CONDITION @if
-    =========================================
-    WHEN TO USE:
-    - To conditionally render an element based on a dynamic expression.
-    - Syntax: @if (condition) { ... } @else if (other) { ... } @else { ... }
+    - Conditionally renders elements.
+    - Syntax: @if (condition) { ... } @else { ... }
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
-    <h3>8. If Condition</h3>
-    <div
-      class="alert"
-      [class.alert-success]="userAge >= 18"
-      [class.alert-warning]="userAge < 18"
-    >
-      @if (userAge >= 18) {
-        <span>Status: <strong>Adult</strong> (Access Granted)</span>
-      } @else {
-        <span>Status: <strong>Minor</strong> (Restricted Access)</span>
-      }
+    <div class="alert" [class.alert-success]="userAge >= 18" [class.alert-warning]="userAge < 18">
+      @if (userAge >= 18) { <strong>Adult</strong> } @else { <strong>Minor</strong> }
     </div>
   </div> -->
 
   <!-- 
-    =========================================
-    9. Two-way Binding
-    =========================================
-    WHEN TO USE:
-    - To create a two-way data binding between a form input and a component property.
-    - Syntax: [(ngModel)]="property"
-    - Common for: input, select, and textarea elements.
-    - Benefits: 
-      - Simplifies two-way data binding.
-      - Maintains data consistency.
+    9. TWO-WAY BINDING [(ngModel)]
+    - Syncs data between input and property.
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light text-center">
-    <h3>9. Two-way Binding</h3>
-    <div class="max-w-400 mx-auto">
-      <input
-        type="text"
-        [(ngModel)]="searchInput"
-        class="form-control mb-3"
-        placeholder="Enter your search query..."
-      />
-      <p class="lead">
-        Search Result:
-        <span class="badge bg-primary px-3 py-2 fs-6 rounded-pill shadow-sm">{{
-          searchInput
-        }}</span>
-      </p>
-    </div>
+    <input type="text" [(ngModel)]="searchInput" class="form-control mb-3" placeholder="Search..."/>
+    <p>Result: <span class="badge bg-primary">{{ searchInput }}</span></p>
   </div> -->
+
+  <alert (SuccessEvent)="onSuccessEvent($event)">
+    <span>Home Component</span>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
+    </p>
+    <hr />
+  </alert>
 </section>

@@ -28,11 +28,9 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <!-- 
-            =========================================
             ROUTING: routerLink vs href
-            =========================================
-            - Use [routerLink] for internal navigation to keep the app as a Single Page Application (No Reload).
-            - Use [href] ONLY for links outside the application or for a full page refresh.
+            - routerLink: Internal SPA navigation (No Reload).
+            - href: External links or full page refresh.
           -->
           <a
             class="nav-link"
@@ -42,10 +40,8 @@
           >
         </li>
         <!-- 
-          [routerLinkActiveOptions]="{ exact: true }"
-          - By default, active classes are applied if the URL *starts with* the path (prefix match).
-          - With {exact: true}, the class is ONLY applied if the URL matches the path exactly.
-          - Use this when you want to deactivate the "Parent" link when a "Child" route is active.
+          routerLinkActiveOptions {exact: true}: 
+          ONLY applies the active class if the URL matches exactly (prevents parent links staying active for children).
         -->
         <li class="nav-item">
           <a

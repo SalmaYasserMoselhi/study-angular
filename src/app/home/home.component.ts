@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RecommendedProductsComponent } from '../recommended-products/recommended-products.component';
 import { NgClass } from '@angular/common';
 import { ImmediateTestComponentComponent } from '../immediate-test-component/immediate-test-component.component';
+import { AlertComponent } from '../alert/alert.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   selector: 'app-home',
@@ -13,16 +15,14 @@ import { ImmediateTestComponentComponent } from '../immediate-test-component/imm
     RecommendedProductsComponent,
     NgClass,
     ImmediateTestComponentComponent,
+    AlertComponent,
+    ProductCardComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  /**
-   * =========================================
-   * 1. DATA INTERPOLATION PROPERTIES
-   * =========================================
-   */
+  /* --- 1. DATA INTERPOLATION {{ }} --- */
   title: string = 'Home Page';
   userName: string = 'Salma Yasser';
 
@@ -34,20 +34,11 @@ export class HomeComponent {
     return this.userName;
   }
 
-  /**
-   * =========================================
-   * 2. PROPERTY BINDING PROPERTIES
-   * =========================================
-   * Note: These preserve their data types (boolean, number, etc.)
-   */
+  /* --- 2. PROPERTY BINDING [property] --- */
   imgSrc: string = 'images/1.jpeg';
   isBtnDisabled: boolean = true;
 
-  /**
-   * =========================================
-   * 3. EVENT BINDING METHODS
-   * =========================================
-   */
+  /* --- 3. EVENT BINDING (event) --- */
   sayHello(): void {
     alert('Hello! This is an Event Binding example.');
   }
@@ -56,23 +47,13 @@ export class HomeComponent {
     console.log('Key pressed:', event.key);
   }
 
-  /**
-   * =========================================
-   * 4. ATTRIBUTE BINDING PROPERTIES
-   * =========================================
-   * - Used when no DOM property exists.
-   * - Vital for: Accessibility (ARIA), SEO.
-   */
+  /* --- 4. ATTRIBUTE BINDING [attr.attribute] --- */
+  // Used for: Accessibility (ARIA), SEO, or when no DOM property exists.
   colSpanValue: number = 2;
   ariaLabelText: string = 'Close icon';
   roleName: string = 'button';
 
-  /**
-   * =========================================
-   * 5. CLASS & STYLE BINDING PROPERTIES
-   * =========================================
-   * Used for dynamic CSS class and inline style manipulation.
-   */
+  /* --- 5. CLASS & STYLE BINDING --- */
   userAge: number = 18;
   role: string = 'admin';
 
@@ -86,12 +67,7 @@ export class HomeComponent {
   // Variable for [style] binding
   color: string = 'red';
 
-  /**
-   * =========================================
-   * 6. CONTROL FLOW: @for
-   * =========================================
-   * Used to render lists of items dynamically.
-   */
+  /* --- 6. CONTROL FLOW: @for --- */
   users: string[] = ['Salma', 'Rana', 'Hossam', 'Sara', 'Mona'];
 
   productsList: Product[] = [
@@ -345,11 +321,10 @@ export class HomeComponent {
     },
   ];
 
-  /**
-   * =========================================
-   * 9. TWO-WAY BINDING PROPERTIES
-   * =========================================
-   * Syncs data between logic and UI automatically.
-   */
+  /* --- 9. TWO-WAY BINDING [(ngModel)] --- */
   searchInput: string = '';
+
+  onSuccessEvent(event: string) {
+    console.log(event);
+  }
 }

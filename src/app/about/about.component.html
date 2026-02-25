@@ -6,12 +6,9 @@
   </p>
 
   <!-- 
-    =========================================
     NESTED ROUTING: PARENT VIEW
-    =========================================
-    1. Navigation Links:
-       - Use relative paths (no leading '/') to target child routes.
-       - routerLinkActive: Highlights the link when the child route is active.
+    - Use relative paths for child routes.
+    - router-outlet: Destination for child components.
   -->
   <nav class="mb-3">
     <a routerLink="company" routerLinkActive="fw-bold text-primary" class="me-3"
@@ -22,12 +19,11 @@
 
   <hr />
 
-  <!-- 
-    2. Child Router Outlet:
-       - Every component with children MUST have its own <router-outlet>.
-       - Child components defined in routes will "plug into" this specific spot.
-  -->
   <div class="p-3 bg-white border">
     <router-outlet></router-outlet>
   </div>
+
+  <alert>
+    <span>About Component</span>
+  </alert>
 </section>

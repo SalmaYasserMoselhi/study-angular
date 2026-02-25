@@ -10,14 +10,9 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     /**
-     * =========================================
      * APP ROUTER CONFIGURATION
-     * =========================================
-     * - withInMemoryScrolling:
-     *      scrollPositionRestoration: 'top' -> Automatically scrolls to top on navigation.
-     * - withHashLocation:
-     *      Adds '#' to the URL (e.g., /#/home) to prevent server-side routing issues
-     *      during production deployment.
+     * - withInMemoryScrolling: Scrolls to top on navigation.
+     * - withHashLocation: Adds '#' for production server compatibility.
      */
     provideRouter(
       routes,

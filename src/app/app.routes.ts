@@ -9,12 +9,8 @@ export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   /**
-   * =========================================
    * LAZY LOADING (Optimization)
-   * =========================================
-   * - Concept: Loads components on-demand (only when navigating to the route).
-   * - Benefit: Faster initial load by reducing the starting bundle size.
-   * - Syntax: `loadComponent` with dynamic `import()`.
+   * - Loads components on-demand to reduce initial bundle size.
    */
   {
     path: 'home',
@@ -46,24 +42,14 @@ export const routes: Routes = [
 
   /**
    * Default Route: Redirect empty path to 'home'.
-   * - redirectTo: 'home'
-   * - pathMatch: 'full' (Mandatory for empty paths. The default is 'prefix',
-   *   which matches if the URL simply *starts with* the path string.
-   *   Since every URL starts with an empty string, 'prefix' would always match.)
+   * pathMatch: 'full' is required for empty paths.
    */
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: 'home', component: HomeComponent, title: 'Home' },
 
   /**
-   * =========================================
    * NESTED (CHILD) ROUTING
-   * =========================================
-   * - Allows you to have "sub-pages" inside a component.
-   * - Use the 'children' array to define child routes.
    * - Child components render inside the parent component's <router-outlet>.
-   *
-   * Syntax:
-   * children: [ { path: 'child-path', component: ChildComponent } ]
    */
   // {
   //   path: 'about',
