@@ -6,9 +6,11 @@
   </p>
 
   <!-- 
-    NESTED ROUTING: PARENT VIEW
-    - Use relative paths for child routes.
-    - router-outlet: Destination for child components.
+    NESTED ROUTING — Parent View
+    - Child links use RELATIVE paths (no leading '/') so Angular resolves them
+      relative to the current route (/about/team, /about/company).
+    - Using an absolute path like routerLink="/team" would navigate to /team (wrong).
+    - <router-outlet> is the slot where the matched child component renders.
   -->
   <nav class="mb-3">
     <a routerLink="company" routerLinkActive="fw-bold text-primary" class="me-3"
@@ -23,6 +25,11 @@
     <router-outlet></router-outlet>
   </div>
 
+  <!-- 
+    CONTENT PROJECTION (ng-content) + @Output demo
+    - Content between <alert>...</alert> tags is projected into the component's <ng-content>.
+    - See alert.component.html for the slot definitions.
+  -->
   <alert>
     <span>About Component</span>
   </alert>

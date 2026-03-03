@@ -9,8 +9,16 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class AlertComponent {
   /**
-   * @Output: Allows this child component to emit events to its Parent.
-   * EventEmitter: The object used to payload and trigger the event.
+   * @Output — Child → Parent event emission.
+   *
+   * EventEmitter<T>: The mechanism that carries the event payload.
+   * Call .emit(value) to trigger the event and send data to the parent.
+   *
+   * The parent listens with: (SuccessEvent)="onSuccessEvent($event)"
+   *
+   * Naming convention note:
+   * - EventEmitter properties are typically camelCase (e.g. successEvent).
+   * - PascalCase (SuccessEvent) also works but is less conventional.
    */
   @Output() SuccessEvent = new EventEmitter<string>();
 

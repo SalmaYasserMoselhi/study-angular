@@ -1,21 +1,25 @@
 <section>
+  <!-- ===== ARCHIVED EXAMPLES (concepts learned; kept for reference — uncomment to see them live) ===== -->
+
   <!-- 
     1. DATA INTERPOLATION {{ }}
-    - Displays dynamic text, automatically escapes HTML.
+    - Renders dynamic text in the template. Automatically escapes HTML (XSS-safe).
+    - Can call methods: {{ getName() }} or use expressions: {{ 1 + 1 }}
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>1. Data Interpolation</h3>
     <h1>Welcome to {{ title }}</h1>
     <p>Logged in as: <strong>{{ getName() }}</strong></p>
     <div class="alert alert-info">
-      <strong>Security:</strong> {{ htmlSnippet }} (renders as plain text)
+      <strong>Security:</strong> {{ htmlSnippet }} (renders as plain text, not HTML)
     </div>
   </div> -->
 
   <!-- 
     2. PROPERTY BINDING [property]
-    - Binds TS values to HTML properties/attributes (src, disabled, etc.).
-    - Preserves data types.
+    - Binds a TypeScript value to an HTML element property (not attribute).
+    - Keeps data types (e.g. [disabled]="true" passes a boolean, not the string "true").
+    - Syntax: [propertyName]="expression"
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>2. Property Binding</h3>
@@ -26,7 +30,9 @@
 
   <!-- 
     3. EVENT BINDING (event)
-    - Listens for user actions (click, keydown, etc.).
+    - Listens for browser events and calls a TS method.
+    - $event gives access to the native DOM event object.
+    - Syntax: (eventName)="handlerMethod($event)"
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>3. Event Binding</h3>
@@ -38,8 +44,9 @@
 
   <!-- 
     4. ATTRIBUTE BINDING [attr.attribute]
-    - Used when no DOM property exists (aria-*, colspan, role).
-    - Vital for Accessibility (ARIA) and SEO.
+    - Used when no equivalent DOM property exists.
+    - Common use cases: colspan, aria-*, role (Accessibility & SEO).
+    - Syntax: [attr.attributeName]="expression"
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <table class="table table-bordered">
@@ -50,20 +57,22 @@
 
   <!-- 
     5. CLASS BINDING [class]
-    - Adds/removes CSS classes based on a condition or object.
-    - Syntax: [class]="classObject" OR [class.className]="condition"
+    - Adds/removes CSS classes based on a condition.
+    - Object syntax: [class]="{ 'class-name': condition }"
+    - Single class: [class.active]="isActive"
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>5. Class Binding</h3>
     <div [class]="classStyleObj" class="p-2 rounded mb-2">
-      Static Text with dynamic classes (Check my background/color logic).
+      Static Text with dynamic classes (Check TS for logic).
     </div>
   </div> -->
 
   <!-- 
     6. STYLE BINDING [style]
     - Sets specific inline styles dynamically.
-    - Syntax: [style]="styleObject" OR [style.property]="value"
+    - Object syntax: [style]="{ 'css-prop': value }"
+    - Single property: [style.color]="myColor"
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <h3>6. Style Binding</h3>
@@ -79,14 +88,15 @@
   </div> -->
 
   <!-- 
-    7. FOR LOOP @for
-    - Renders a list of items dynamically.
-    - Options: $index, $count, $first, $last, $even, $odd.
-    - Performance: Always 'track' by a unique ID; use $index only as a last resort.
-    - @empty: Shows content when the list is empty.
-    -->
+    7. CONTROL FLOW: @for
+    - Renders a list of items dynamically (replaces *ngFor in modern Angular).
+    - Variables available: $index, $count, $first, $last, $even, $odd.
+    - 'track': Required — tells Angular how to identify each item for efficient re-rendering.
+      Always track by a unique field (e.g. product.id). Use $index only as a last resort.
+    - @empty: Rendered when the list is empty.
+  -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
-    <h3>7. For Loop (Simple List)</h3>
+    <h3>7. @for — Simple List</h3>
     <ul class="list-group">
       @for (user of users; track $index) {
         <li class="list-group-item">{{ user }}</li>
@@ -94,6 +104,14 @@
     </ul>
   </div> -->
 
+  <!-- ===== ACTIVE DEMOS ===== -->
+
+  <!-- 
+    COMPONENT INTERACTION: Parent → Child (@Input)
+    - The parent (HomeComponent) passes each product object down via [product]="product".
+    - ProductCardComponent receives it with @Input() product.
+    - See: product-card.component.ts
+  -->
   <div class="mb-5 p-3 border rounded bg-light">
     <h3>Products List</h3>
     <div class="row g-4">
@@ -112,51 +130,44 @@
 
     <!-- 
       @defer (Deferrable Views)
-      - Lazy-loads components to improve performance.
-      - Triggers: on idle, immediate, viewport, hover, interaction, timer, when <condition>.
-      - Blocks: @placeholder, @loading, @error.
-      - 'prefetch': Loads JS in advance (e.g., prefetch on idle).
-    -->
-    <!-- EXAMPLE 1: Trigger on a specific element (#deferTrigger) -->
-    <!-- 
-    @defer (on interaction(deferTrigger)) {
-      <app-recommended-products />
-    } 
+      - Lazy-loads components at runtime to improve initial page performance.
+      - The component's JS bundle is NOT downloaded until the trigger fires.
+      - Triggers: on idle | immediate | viewport | hover | interaction | timer | when <condition>
+      - Blocks: @placeholder (shown before trigger), @loading (shown while loading), @error
+      - 'prefetch': Pre-downloads the JS bundle early (e.g. prefetch on idle) without rendering yet.
     -->
 
-    <!-- EXAMPLE 2: Trigger on self (placeholder) -->
-    <!-- 
-    @defer (on hover) {
+    <!-- EXAMPLE 1 (commented): Trigger on a specific element reference (#deferTrigger) -->
+    <!-- @defer (on interaction(deferTrigger)) {
+      <app-recommended-products />
+    } -->
+
+    <!-- EXAMPLE 2 (commented): Trigger on hover over the placeholder itself -->
+    <!-- @defer (on hover) {
       <app-recommended-products />
     } @placeholder {
       <div class="p-3 border text-center">Hover here to load recommended products</div>
-    } 
-    -->
+    } -->
 
-    <!-- EXAMPLE 3: prefetch -->
+    <!-- ACTIVE EXAMPLE: Trigger on click (interaction), prefetch JS bundle on idle -->
     @defer (on interaction; prefetch on idle) {
       <app-recommended-products></app-recommended-products>
     } @placeholder {
       <button class="btn btn-primary d-block mx-auto">
-        show recommended products
+        Show Recommended Products
       </button>
     }
-
-    <!-- ACTIVE IMPLEMENTATION -->
-    <!-- @defer (on viewport(deferTrigger)) {
-      <app-recommended-products></app-recommended-products>
-    } -->
   </div>
 
-  <!-- NOTE: 'on immediate' loads right away but still lazy-loads the JS bundle -->
+  <!-- NOTE: 'on immediate' triggers right away but the component is still lazy-loaded (bundle is separate) -->
   <!-- @defer (on immediate) {
     <app-immediate-test-component></app-immediate-test-component>
   } -->
 
   <!-- 
-    8. IF CONDITION @if
-    - Conditionally renders elements.
-    - Syntax: @if (condition) { ... } @else { ... }
+    CONTROL FLOW: @if
+    - Conditionally renders elements (replaces *ngIf in modern Angular).
+    - Syntax: @if (condition) { ... } @else if (...) { ... } @else { ... }
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light">
     <div class="alert" [class.alert-success]="userAge >= 18" [class.alert-warning]="userAge < 18">
@@ -165,19 +176,36 @@
   </div> -->
 
   <!-- 
-    9. TWO-WAY BINDING [(ngModel)]
-    - Syncs data between input and property.
+    TWO-WAY BINDING [(ngModel)]
+    - Syncs data between the TS property and the input element in real time.
+    - Requires FormsModule in the component's imports.
+    - [()] is called "banana in a box" syntax — combines [property] and (event).
   -->
   <!-- <div class="mb-5 p-3 border rounded bg-light text-center">
     <input type="text" [(ngModel)]="searchInput" class="form-control mb-3" placeholder="Search..."/>
     <p>Result: <span class="badge bg-primary">{{ searchInput }}</span></p>
   </div> -->
 
-  <alert (SuccessEvent)="onSuccessEvent($event)">
+  <!-- 
+    COMPONENT INTERACTION: Child → Parent (@Output + ng-content)
+    - AlertComponent emits a SuccessEvent when its close button is clicked.
+    - The parent (HomeComponent) listens with (SuccessEvent)="onSuccessEvent($event)".
+    - The content between <alert> tags is projected into the component via <ng-content>.
+    - See: alert.component.ts / alert.component.html
+  -->
+  <!-- <alert (SuccessEvent)="onSuccessEvent($event)">
     <span>Home Component</span>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.
     </p>
     <hr />
-  </alert>
+  </alert> -->
+
+  <!-- 
+    TEMPLATE REFERENCE VARIABLES (#ref)
+    - #elementRef creates a reference to the DOM element, accessible in the template.
+    - Can be passed to methods as HTMLElement arguments.
+  -->
+  <!-- <h2 #elementRef>Reference</h2> -->
+  <!-- <button (click)="testReferencing(elementRef)">Test Referencing</button> -->
 </section>

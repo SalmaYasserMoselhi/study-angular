@@ -1,10 +1,15 @@
-<!-- This is a **Template Engine** NOT pure HTML -->
-<!-- The ONLY pure html is the index.html file -->
-<!-- We can add logic to our templates -->
+<!-- 
+  Angular Template — NOT pure HTML.
+  We can use Angular syntax here: {{ interpolation }}, [bindings], (events), @if, @for, etc.
+  The only true plain HTML file in the project is index.html.
+-->
 
-<!-- components MUST be imported into app.component.ts -->
+<!-- Components must be imported in the component's .ts file before using their selector here -->
 <app-navbar></app-navbar>
+
 <div class="pt-5">
+  <!-- router-outlet: Angular replaces this placeholder with the component that matches the current URL -->
   <router-outlet></router-outlet>
 </div>
+
 <app-footer></app-footer>

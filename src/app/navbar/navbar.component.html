@@ -23,15 +23,21 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navigation Links -->
     <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- 
+        ROUTING: routerLink vs href
+        - routerLink: SPA navigation — changes the URL without a full page reload.
+        - href: Causes a full page reload; only use for external links.
+
+        routerLinkActive: Applies the given CSS class(es) when this link's route is active.
+
+        routerLinkActiveOptions { exact: true }:
+        - By default, /about also matches /about/team (partial match).
+        - exact: true makes the active class apply ONLY when the URL matches exactly.
+        - Important for parent routes that should not stay "active" when on a child route.
+      -->
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <!-- 
-            ROUTING: routerLink vs href
-            - routerLink: Internal SPA navigation (No Reload).
-            - href: External links or full page refresh.
-          -->
           <a
             class="nav-link"
             routerLink="/home"
@@ -39,10 +45,6 @@
             >Home</a
           >
         </li>
-        <!-- 
-          routerLinkActiveOptions {exact: true}: 
-          ONLY applies the active class if the URL matches exactly (prevents parent links staying active for children).
-        -->
         <li class="nav-item">
           <a
             class="nav-link"

@@ -11,7 +11,7 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   selector: 'app-home',
   standalone: true,
   imports: [
-    FormsModule,
+    FormsModule, // Required for [(ngModel)] two-way binding
     RecommendedProductsComponent,
     NgClass,
     ImmediateTestComponentComponent,
@@ -26,7 +26,7 @@ export class HomeComponent {
   title: string = 'Home Page';
   userName: string = 'Salma Yasser';
 
-  // This string contains HTML tags, but interpolation renders them as plain text (escaped).
+  // htmlSnippet contains HTML tags — interpolation renders them as plain text (XSS-safe).
   htmlSnippet: string =
     '<button class="btn btn-danger">Dangerous Button</button>';
 
@@ -48,7 +48,8 @@ export class HomeComponent {
   }
 
   /* --- 4. ATTRIBUTE BINDING [attr.attribute] --- */
-  // Used for: Accessibility (ARIA), SEO, or when no DOM property exists.
+  // Used when no matching DOM property exists (e.g. colspan, aria-*, role).
+  // Critical for Accessibility (ARIA) and SEO.
   colSpanValue: number = 2;
   ariaLabelText: string = 'Close icon';
   roleName: string = 'button';
@@ -57,19 +58,20 @@ export class HomeComponent {
   userAge: number = 18;
   role: string = 'admin';
 
-  // Object for [class] binding
+  // Object syntax for [class] binding — each key is a class name, value is the condition.
   classStyleObj = {
     'bg-info': this.userAge >= 20,
     'text-white': this.role === 'admin' || this.role === 'user',
     'text-danger': this.role === 'guest',
   };
 
-  // Variable for [style] binding
+  // Variable used in inline [style] binding
   color: string = 'red';
 
   /* --- 6. CONTROL FLOW: @for --- */
   users: string[] = ['Salma', 'Rana', 'Hossam', 'Sara', 'Mona'];
 
+  // Mock product data — static until a real API/service is connected.
   productsList: Product[] = [
     {
       id: '1',
@@ -321,9 +323,11 @@ export class HomeComponent {
     },
   ];
 
-  /* --- 9. TWO-WAY BINDING [(ngModel)] --- */
+  /* --- 7. TWO-WAY BINDING [(ngModel)] --- */
   searchInput: string = '';
 
+  /* --- 8. COMPONENT INTERACTION: Child-to-Parent (@Output) --- */
+  // Called when the AlertComponent emits its SuccessEvent.
   onSuccessEvent(event: string) {
     console.log(event);
   }

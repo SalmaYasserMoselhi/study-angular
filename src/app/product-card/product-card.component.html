@@ -1,3 +1,4 @@
+<!-- All values used here (product.title, product.price, etc.) come from @Input() product -->
 <div class="card h-100 shadow-sm">
   <img
     [src]="product.imageCover"
@@ -14,13 +15,14 @@
       <span class="fw-bold text-primary">{{ product.price }} EGP</span>
       <button class="btn btn-sm btn-outline-primary shadow-none">View</button>
     </div>
-    <!-- <div class="row g-1 mt-2"> -->
-    <!-- Nested Loop: Each image in its own column for a single line layout -->
-    <!-- @for (productImageSrc of product.images; track $index) {
-                  <div class="col">
-                    <img [src]="productImageSrc" class="w-100 rounded" alt="" />
-                  </div>
-                } -->
-    <!-- </div> -->
+
+    <!-- ARCHIVED: Nested @for loop — iterates product.images to show thumbnails -->
+    <!-- <div class="row g-1 mt-2">
+      @for (productImageSrc of product.images; track $index) {
+        <div class="col">
+          <img [src]="productImageSrc" class="w-100 rounded" alt="" />
+        </div>
+      }
+    </div> -->
   </div>
 </div>

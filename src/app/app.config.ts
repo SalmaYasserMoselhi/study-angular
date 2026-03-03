@@ -11,8 +11,12 @@ export const appConfig: ApplicationConfig = {
   providers: [
     /**
      * APP ROUTER CONFIGURATION
-     * - withInMemoryScrolling: Scrolls to top on navigation.
-     * - withHashLocation: Adds '#' for production server compatibility.
+     *
+     * - withInMemoryScrolling: Scrolls the page to the top on every navigation.
+     * - withHashLocation: Adds '#' to URLs (e.g. /#/home instead of /home).
+     *   Required when serving on static hosts (GitHub Pages, Vercel, etc.) that
+     *   don't support server-side URL rewriting — without it, a direct URL like
+     *   /about would return a 404.
      */
     provideRouter(
       routes,

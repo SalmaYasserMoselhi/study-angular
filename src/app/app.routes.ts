@@ -1,22 +1,33 @@
 import { Routes } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
-// import { HomeComponent } from './home/home.component';
-// import { AboutComponent } from './about/about.component';
-// import { AboutTeamComponent } from './about/about-team/about-team.component';
-// import { AboutCompanyComponent } from './about/about-company/about-company.component';
 
 export const routes: Routes = [
+  /**
+   * DEFAULT REDIRECT
+   * - pathMatch: 'full' is required for empty paths so Angular only matches
+   *   the exact empty string '' and not every URL that starts with ''.
+   */
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   /**
-   * LAZY LOADING (Optimization)
-   * - Loads components on-demand to reduce initial bundle size.
+   * LAZY LOADING (Performance Optimization)
+   * - loadComponent: Loads the component bundle on-demand instead of at startup.
+   * - Reduces initial bundle size — the user only downloads what they need.
+   * - Angular handles the dynamic import automatically.
    */
   {
     path: 'home',
     loadComponent: () =>
       import('./home/home.component').then((c) => c.HomeComponent),
   },
+
+  /**
+   * NESTED (CHILD) ROUTING
+   * - Child components render inside the parent's <router-outlet>.
+   * - The parent route (about) loads its own component first, then child
+   *   routes (team, company) render inside it based on the URL segment.
+   * - Children also use lazy loading here.
+   */
   {
     path: 'about',
     loadComponent: () =>
@@ -41,35 +52,9 @@ export const routes: Routes = [
   },
 
   /**
-   * Default Route: Redirect empty path to 'home'.
-   * pathMatch: 'full' is required for empty paths.
-   */
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
-  // { path: 'home', component: HomeComponent, title: 'Home' },
-
-  /**
-   * NESTED (CHILD) ROUTING
-   * - Child components render inside the parent component's <router-outlet>.
-   */
-  // {
-  //   path: 'about',
-  //   component: AboutComponent,
-  //   title: 'About',
-  //   children: [
-  //     { path: '', redirectTo: 'team', pathMatch: 'full' },
-  //     { path: 'team', component: AboutTeamComponent, title: 'About Team' },
-  //     {
-  //       path: 'company',
-  //       component: AboutCompanyComponent,
-  //       title: 'About Company',
-  //     },
-  //   ],
-  // },
-
-  /**
-   * Wildcard Route: Matches any URL not defined above.
-   * - Usually points to a "Not Found" or "404" component.
-   * - IMPORTANT: Must be placed at the VERY END of the routes array.
+   * WILDCARD ROUTE — Must be LAST in the array.
+   * - '**' matches any URL not handled by the routes above.
+   * - Used for a 404 / "Not Found" page.
    */
   { path: '**', component: NotFoundComponent, title: 'Not Found' },
 ];

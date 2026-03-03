@@ -1,7 +1,17 @@
 import { Component } from '@angular/core';
 import { Product } from '../product';
-import { ProductCardComponent } from "../product-card/product-card.component";
+import { ProductCardComponent } from '../product-card/product-card.component';
 
+/**
+ * RecommendedProductsComponent
+ *
+ * This component is intentionally kept separate from HomeComponent so it can
+ * be used inside an @defer block in home.component.html.
+ *
+ * @defer lazy-loads this component's JS bundle — it is only downloaded
+ * when the trigger fires (e.g. on user interaction), not at app startup.
+ * If this were inlined in HomeComponent, it could not be deferred separately.
+ */
 @Component({
   selector: 'app-recommended-products',
   standalone: true,
@@ -10,6 +20,7 @@ import { ProductCardComponent } from "../product-card/product-card.component";
   styleUrl: './recommended-products.component.css',
 })
 export class RecommendedProductsComponent {
+  // Mock data — kept small since this component is loaded lazily as a demo.
   recommendedProducts: Product[] = [
     {
       id: '1',

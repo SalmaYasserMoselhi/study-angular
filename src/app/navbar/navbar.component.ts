@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// RouterLink and RouterLinkActive are needed for routerLink="..." and routerLinkActive="..." in the template.
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({

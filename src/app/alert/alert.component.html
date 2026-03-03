@@ -1,19 +1,26 @@
+<!-- CONCEPT: Content Projection (ng-content) + @Output event emission -->
+
 <div
   class="alert alert-success alert-dismissible fade show position-fixed top-0 end-0 m-3"
   role="alert"
   style="z-index: 1050"
 >
   <!-- 
-    A. MULTI-SLOT CONTENT PROJECTION
-    - Uses 'select' attribute to capture specific elements.
+    CONTENT PROJECTION — ng-content
+    Allows a parent to inject HTML into pre-defined slots inside this component.
+
+    A. NAMED SLOT (select attribute):
+    - select="span" captures any <span> element passed from the parent.
+    - Only the matching element is rendered here.
   -->
   <strong>Notification from <ng-content select="span"></ng-content>!</strong>
 
   <!-- 
-    B. DEFAULT SLOT (Catch-all)
-    - Captures any content that doesn't match a 'select' attribute.
+    B. DEFAULT SLOT (catch-all):
+    - Captures everything passed from the parent that does NOT match a named select.
   -->
   <ng-content></ng-content>
+
   <button
     type="button"
     class="btn-close"
