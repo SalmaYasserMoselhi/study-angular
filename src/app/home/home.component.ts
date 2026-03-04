@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { Product } from '../product';
 import { FormsModule } from '@angular/forms';
 import { RecommendedProductsComponent } from '../recommended-products/recommended-products.component';
@@ -6,6 +13,7 @@ import { NgClass } from '@angular/common';
 import { ImmediateTestComponentComponent } from '../immediate-test-component/immediate-test-component.component';
 import { AlertComponent } from '../alert/alert.component';
 import { ProductCardComponent } from '../product-card/product-card.component';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +25,7 @@ import { ProductCardComponent } from '../product-card/product-card.component';
     ImmediateTestComponentComponent,
     AlertComponent,
     ProductCardComponent,
+    ModalComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -330,5 +339,47 @@ export class HomeComponent {
   // Called when the AlertComponent emits its SuccessEvent.
   onSuccessEvent(event: string) {
     console.log(event);
+  }
+
+  /* --- 9. TEMPLATE REFERENCE VARIABLES, @ViewChild / @ViewChildren --- */
+
+  /**
+   * @ViewChild: Selects ONE element or component from the template.
+   * - By ref name:  @ViewChild('refName')      → ElementRef (wraps a DOM node)
+   * - By type:      @ViewChild(ComponentClass) → component instance
+   * - nativeElement: the raw DOM node (use to read/write DOM properties directly).
+   *
+   * @ViewChildren: Selects ALL matching elements/components → QueryList<T>
+   * - QueryList is live — updates when elements are added/removed (e.g. inside @if blocks).
+   * - Key methods: .first, .last, .length, .forEach(), .toArray()
+   */
+  // @ViewChild('el') headingElementRef!: ElementRef; // → first #el only
+  @ViewChildren('el') headingElements!: QueryList<ElementRef>; // → all #el elements
+
+  test() {
+    this.headingElements.first.nativeElement.style.color = 'red'; // first #el
+    this.headingElements.last.nativeElement.style.color = 'blue'; // last #el
+    this.headingElements.forEach((el) => {
+      el.nativeElement.style.color = 'green'; // forEach overrides all
+    });
+  }
+
+  /**
+   * @ViewChild(Component) — gives direct access to a child component instance.
+   * The parent can call the child's public methods without @Input / @Output wiring.
+   *
+   * @ViewChild vs @ContentChild:
+   * - @ViewChild    → targets the component's OWN template
+   * - @ContentChild → targets content projected via <ng-content>
+   * (Plural forms: @ViewChildren / @ContentChildren → both return QueryList<T>)
+   */
+  @ViewChild(ModalComponent) modal!: ModalComponent;
+
+  openModal() {
+    this.modal.openModal(); // directly calls child method
+  }
+
+  closeModal() {
+    this.modal.closeModal(); // directly calls child method
   }
 }

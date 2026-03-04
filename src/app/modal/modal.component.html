@@ -1,0 +1,16 @@
+<!--
+  isOpen is set by the parent via @ViewChild — the parent calls openModal() / closeModal()
+  directly on this component instance. This template just reacts to the state change.
+-->
+@if (isOpen) {
+  <section
+    class="border bg-danger p-5 position-fixed top-50 start-50 translate-middle z-3"
+  >
+    <h2>Modal Component</h2>
+    <p>
+      This modal is controlled by the parent (HomeComponent) using ViewChild.
+      The parent has a direct reference to this component and calls openModal()
+      and closeModal() on it directly.
+    </p>
+  </section>
+}

@@ -51,6 +51,12 @@ export const routes: Routes = [
     ],
   },
 
+  {
+    path: 'gallery',
+    loadComponent: () =>
+      import('./gallery/gallery.component').then((c) => c.GalleryComponent),
+  },
+
   /**
    * WILDCARD ROUTE — Must be LAST in the array.
    * - '**' matches any URL not handled by the routes above.

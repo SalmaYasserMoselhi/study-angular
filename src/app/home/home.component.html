@@ -202,10 +202,42 @@
   </alert> -->
 
   <!-- 
-    TEMPLATE REFERENCE VARIABLES (#ref)
-    - #elementRef creates a reference to the DOM element, accessible in the template.
-    - Can be passed to methods as HTMLElement arguments.
+    9A. TEMPLATE REFERENCE VARIABLE (#) + @ViewChildren
+    - '#el' labels each <h2>; @ViewChildren('el') captures ALL as QueryList<ElementRef>.
+    - @ViewChild('el') would only get the FIRST match.
+    - See: home.component.ts → headingElements, test()
   -->
-  <!-- <h2 #elementRef>Reference</h2> -->
-  <!-- <button (click)="testReferencing(elementRef)">Test Referencing</button> -->
+  <div class="mb-5 p-3 border rounded bg-light">
+    <h3 class="mb-3">
+      9A. ViewChildren — Select multiple DOM elements by #ref
+    </h3>
+    <h2 #el>Heading 1 — will turn green (forEach override)</h2>
+    <h2 #el>Heading 2 — will turn green (forEach override)</h2>
+    <h2 #el>Heading 3 — will turn green (forEach override)</h2>
+    <p class="text-muted small">
+      Before clicking: first=red, last=blue, then forEach sets all to green.
+    </p>>>
+    <button (click)="test()" class="btn btn-primary">
+      Run ViewChildren Demo
+    </button>
+  </div>
+
+  <!-- 
+    9B. @ViewChild(Component) — parent controls child component directly
+    - @ViewChild(ModalComponent) gives HomeComponent a reference to the modal instance.
+    - The parent calls openModal() / closeModal() without @Input or @Output.
+    - @ViewChild targets own template; @ContentChild targets projected <ng-content>.
+    - See: home.component.ts → modal, openModal(), closeModal()
+  -->
+  <div class="mb-5 p-3 border rounded bg-light">
+    <h3 class="mb-3">
+      9B. ViewChild(Component) — Control child component methods
+    </h3>
+    <div class="d-flex gap-2 mb-3">
+      <button (click)="openModal()" class="btn btn-success">Open Modal</button>
+      <button (click)="closeModal()" class="btn btn-danger">Close Modal</button>
+    </div>
+    <!-- ModalComponent instance — accessed in HomeComponent via @ViewChild(ModalComponent) -->
+    <app-modal></app-modal>
+  </div>
 </section>
